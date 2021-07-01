@@ -1,0 +1,27 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Dashboard extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->session->userdata('username')) {
+            redirect('auth');
+        }
+    }
+
+    public function index()
+    {
+        $data['judul'] = 'Dashboard';
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
+        $data['bulan'] = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('template/sidebar');
+        $this->load->view('dashboard/dashboard', $data);
+        $this->load->view('template/footer');
+    }
+}
