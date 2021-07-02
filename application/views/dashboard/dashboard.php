@@ -16,7 +16,7 @@
                         <h6 class="">Jumlah Penerima PKH</h6>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 mx-auto">
+                        <div class="col-sm-4 mx-auto">
                             <form action="" method="GET">
                                 <div class="col-sm-12 ml-auto">
                                     <div class="input-group mt-2">
@@ -34,7 +34,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-3 mx-auto">
+                        <div class="col-sm-4 mx-auto">
                             <form action="" method="GET">
                                 <div class="col-sm-12 ml-auto">
                                     <div class="input-group mt-2">
@@ -52,7 +52,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-3 mx-auto">
+                        <div class="col-sm-4 mx-auto">
                             <form action="" method="GET">
                                 <div class="col-sm-12 ml-auto">
                                     <div class="input-group mt-2">
@@ -66,13 +66,14 @@
                                                 <?php endif; ?>
                                             <?php endfor; ?>
                                         </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">Pilih</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="input-group-append col-sm-1 mr-4">
-                            <button class="btn btn-primary mt-2" type="submit">Pilih</button>
-                        </div>
+
                     </div>
                     <div class="w-chart">
 
