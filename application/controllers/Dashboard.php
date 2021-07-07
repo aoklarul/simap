@@ -9,6 +9,8 @@ class Dashboard extends CI_Controller
         if (!$this->session->userdata('username')) {
             redirect('auth');
         }
+        $this->load->model('M_jumlahpkh');
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -18,7 +20,11 @@ class Dashboard extends CI_Controller
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['kecamatan'] = $this->db->get('kecamatan')->result_array();
-        $data['bulan'] = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $data['jumlah_pkh'] = $this->M_jumlahpkh->ambilIdPerhitungan();
+
+        if ($this->input->get('kecamatan')) {
+            $data['jumlah_pkh'] = $this->M_jumlahpkh->cariData();
+        }
 
         $this->load->view('template/header', $data);
         $this->load->view('template/navbar', $data);

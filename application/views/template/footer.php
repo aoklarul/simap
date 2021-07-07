@@ -26,6 +26,9 @@
 <script src="<?= base_url('assets/') ?>assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="<?= base_url('assets/') ?>plugins/apex/apexcharts.min.js"></script>
 <script src="<?= base_url('assets/') ?>assets/js/dashboard/dash_1.js"></script>

@@ -12,6 +12,30 @@ class M_jumlahpkh extends CI_model
         return $query;
     }
 
+    public function ambilIdPerhitungan()
+    {
+        $query = $this->db->select('jumlah, nilai_sem, tahun, bulan, nama, perhitungan.id, idJumlah_pkh')
+            ->from('perhitungan')
+            ->join('jumlah_pkh', 'perhitungan.idJumlah_pkh = jumlah_pkh.id')
+            ->join('kecamatan', 'jumlah_pkh.idKecamatan = kecamatan.id')
+            ->order_by('tahun, kecamatan.nama')
+            ->get()->result_array();
+        return $query;
+    }
+
+    public function cariData()
+    {
+        $keyword = $this->input->get('cari');
+        $query = $this->db->select('jumlah, nilai_sem, tahun, bulan, nama, perhitungan.id, idJumlah_pkh')
+            ->from('perhitungan')
+            ->join('jumlah_pkh', 'perhitungan.idJumlah_pkh = jumlah_pkh.id')
+            ->join('kecamatan', 'jumlah_pkh.idKecamatan = kecamatan.id')
+            ->where('kecamatan', $keyword)
+            ->order_by('tahun, kecamatan.nama')
+            ->get()->result_array();
+        return $query;
+    }
+
     public function tambahJumlahpkh()
     {
         $data = [

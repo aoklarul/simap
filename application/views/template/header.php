@@ -21,6 +21,10 @@
     <link href="<?= base_url('assets/') ?>assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+    <!-- Leaflet -->
+    <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/leaflet/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" /> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="<?= base_url('assets/') ?>assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
