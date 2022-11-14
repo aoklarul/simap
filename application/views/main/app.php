@@ -24,6 +24,8 @@
   <link href="<?= base_url() ?>assets/src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/src/plugins/src/table/datatable/datatables.css">
 
+  <link href="<?= base_url() ?>assets/src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url() ?>assets/src/assets/css/dark/components/modal.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/src/plugins/css/light/table/datatable/dt-global_style.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/src/plugins/css/dark/table/datatable/dt-global_style.css">
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/src/assets/css/light/elements/alert.css">

@@ -50,11 +50,72 @@ class KecamatanController extends CI_Controller
             'geojson' => $file_name
           ];
         }
-
-        $this->Kecamatan->add($data);
-        $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
-        redirect('kecamatan');
       }
+
+      $this->Kecamatan->add($data);
+      $this->session->set_flashdata('message', 'Data berhasil ditambahkan!');
+      redirect('kecamatan');
     }
+  }
+
+  public function edit($id)
+  {
+    $this->form_validation->set_rules('nama', 'Kecamatan', 'required|trim');
+    $kecamatan = $this->Kecamatan->find($id)->row_array();
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->template->load('main/app', 'kecamatan/edit', [
+        'title' => 'Kecamatan',
+        'page_title' => 'Ubah Data Kecamatan',
+        'kecamatan' => $this->Kecamatan->find($id)->row()
+      ]);
+    } else {
+      if (!empty($_FILES['geojson']['name'])) {
+        $config['upload_path']          = './assets/geojson/kecamatan/';
+        $config['allowed_types']        = 'geojson';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('geojson')) {
+          echo $this->upload->display_errors();
+          die;
+        } else {
+          $old_geojson = $kecamatan['geojson'];
+          unlink(FCPATH . 'assets/geojson/kecamatan/' . $old_geojson);
+
+          $file_name = $this->upload->data('file_name');
+          $nama = $this->input->post('nama');
+
+          $data = [
+            'nama' => $nama,
+            'geojson' => $file_name
+          ];
+        }
+      }
+
+      if (empty($_FILES['geojson']['name'])) {
+        $nama = $this->input->post('nama');
+
+        $data = [
+          'nama' => $nama
+        ];
+      }
+
+      $this->Kecamatan->edit($data, $id);
+      $this->session->set_flashdata('message', 'Data berhasil diubah!');
+      redirect('kecamatan');
+    }
+  }
+
+  public function delete($id)
+  {
+    $kecamatan = $this->Kecamatan->find($id)->row_array();
+
+    $old_geojson = $kecamatan['geojson'];
+    unlink(FCPATH . 'assets/geojson/kecamatan/' . $old_geojson);
+
+    $this->Kecamatan->delete($id);
+    $this->session->set_flashdata('message', 'Data berhasil dihapus!');
+    redirect('kecamatan');
   }
 }
