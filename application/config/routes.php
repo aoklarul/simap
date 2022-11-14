@@ -64,3 +64,6 @@ $route['kecamatan/delete/(:any)'] = 'KecamatanController/delete/$1';
 
 // Kelurahan Controller
 $route['kelurahan'] = 'KelurahanController/index';
+$route['kelurahan/create'] = 'KelurahanController/create';
+$route['kelurahan/edit/(:any)'] = 'KelurahanController/edit/$1';
+$route['kelurahan/delete/(:any)'] = 'KelurahanController/delete/$1';
