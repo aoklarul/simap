@@ -28,12 +28,17 @@
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group mb-4">
               <label for="nama">Kecamatan</label>
-              <input type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= set_value('nama') ?>" placeholder="Nama Kecamatan">
+              <input type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= $kecamatan->nama ?>" placeholder="Nama Kecamatan">
               <?= form_error('nama', '<div class="invalid-feedback">', '</div>'); ?>
 
             </div>
             <div class="form-group mb-4">
               <label for="geojson">Geojson</label>
+              <p>
+                <a href="<?= base_url('assets/geojson/kecamatan/') . $kecamatan->geojson ?>" target="_blank">
+                  <?= $kecamatan->geojson ?>
+                </a>
+              </p>
               <input type="file" class="form-control file-upload-input <?= form_error('geojson') ? 'is-invalid' : '' ?>" id="geojson" name="geojson">
               <?= form_error('geojson', '<div class="invalid-feedback">', '</div>'); ?>
             </div>

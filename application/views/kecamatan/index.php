@@ -54,7 +54,11 @@
               <tr>
                 <td class="text-center"><?= $no ?></td>
                 <td><?= $row->nama ?></td>
-                <td><?= $row->geojson ?></td>
+                <td>
+                  <a href="<?= base_url('assets/geojson/kecamatan/') . $row->geojson ?>" target="_blank">
+                    <?= $row->geojson ?>
+                  </a>
+                </td>
                 <td class="text-center">
                   <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -66,8 +70,8 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                      <a class="dropdown-item" href="javascript:void(0);">Ubah Data</a>
-                      <a class="dropdown-item" href="javascript:void(0);">Hapus Data</a>
+                      <a class="dropdown-item" href="<?= site_url('kecamatan/edit/') . $row->id ?>">Ubah Data</a>
+                      <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#btn-delete<?= $row->id ?>">Hapus Data</a>
                     </div>
                   </div>
                 </td>
@@ -78,6 +82,32 @@
             ?>
           </tbody>
         </table>
+
+        <!-- Modal -->
+        <?php foreach ($kecamatan as $row) : ?>
+          <div class="modal fade" id="btn-delete<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p class="modal-text">Apakah anda yakin ingin menghapus data?</p>
+                </div>
+                <div class="modal-footer">
+                  <a type="button" class="btn btn-light-dark" data-bs-dismiss="modal">Tidak</a>
+                  <a type="button" class="btn btn-primary" href="<?= site_url('kecamatan/delete/') . $row->id ?>">Hapus Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
 
       </div>
     </div>

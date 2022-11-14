@@ -59,8 +59,8 @@ $route['dashboard'] = 'DashboardController/index';
 // Kecamatan Controller
 $route['kecamatan'] = 'KecamatanController/index';
 $route['kecamatan/create'] = 'KecamatanController/create';
-$route['kecamatan/edit'] = 'KecamatanController/edit';
-$route['kecamatan/delete'] = 'KecamatanController/index';
+$route['kecamatan/edit/(:any)'] = 'KecamatanController/edit/$1';
+$route['kecamatan/delete/(:any)'] = 'KecamatanController/delete/$1';
 
 // Kelurahan Controller
 $route['kelurahan'] = 'KelurahanController/index';
