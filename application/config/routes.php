@@ -67,3 +67,9 @@ $route['kelurahan'] = 'KelurahanController/index';
 $route['kelurahan/create'] = 'KelurahanController/create';
 $route['kelurahan/edit/(:any)'] = 'KelurahanController/edit/$1';
 $route['kelurahan/delete/(:any)'] = 'KelurahanController/delete/$1';
+
+// Jumlah PKH Controller
+$route['pkh'] = 'PkhController/index';
+$route['pkh/create'] = 'PkhController/create';
+$route['pkh/edit/(:any)'] = 'PkhController/edit/$1';
+$route['pkh/delete/(:any)'] = 'PkhController/delete/$1';
