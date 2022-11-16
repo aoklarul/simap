@@ -34,6 +34,7 @@
             <div class="form-group mb-4">
               <label for="idKecamatan">Kecamatan</label>
               <select class="form-select <?= form_error('idKecamatan') ? 'is-invalid' : '' ?>" id="idKecamatan" name="idKecamatan">
+                <option selected disabled>--Pilih Kecamatan--</option>
                 <?php foreach ($kecamatan as $row) : ?>
                   <option value="<?= $row->id ?>" <?= set_value('idKecamatan') == $row->id ? 'selected' : '' ?>><?= $row->nama ?></option>
                 <?php endforeach; ?>

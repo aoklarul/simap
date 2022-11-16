@@ -1,16 +1,16 @@
 <?php
 
-class Kelurahan extends CI_model
+class Pkh extends CI_model
 {
-  private $_table = 'kelurahan';
+  private $_table = 'jumlah_pkh';
   private $_primaryKey = 'id';
 
   public function get()
   {
-    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson');
+    $this->db->select('jumlah_pkh.id as id, idKelurahan, bulan, tahun, jumlah, kelurahan.nama as kelurahan, kecamatan.nama as kecamatan');
     $this->db->from($this->_table);
+    $this->db->join('kelurahan', 'kelurahan.id = jumlah_pkh.idKelurahan');
     $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
-    $this->db->order_by('kelurahan.nama', 'ASC');
     $query = $this->db->get();
 
     return $query;
@@ -18,10 +18,11 @@ class Kelurahan extends CI_model
 
   public function find($id)
   {
-    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson');
+    $this->db->select('jumlah_pkh.id as id, idKelurahan, bulan, tahun, jumlah, kelurahan.nama as kelurahan, kecamatan.nama as kecamatan');
     $this->db->from($this->_table);
+    $this->db->join('kelurahan', 'kelurahan.id = jumlah_pkh.idKelurahan');
     $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
-    $this->db->where('kelurahan.id', $id);
+    $this->db->where('jumlah_pkh.id', $id);
     $query = $this->db->get();
 
     return $query;
@@ -34,8 +35,9 @@ class Kelurahan extends CI_model
 
   public function edit($data, $id)
   {
+    $this->db->set('jumlah', $data);
     $this->db->where($this->_primaryKey, $id);
-    $this->db->update($this->_table, $data);
+    $this->db->update($this->_table);
   }
 
   public function delete($id)
