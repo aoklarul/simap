@@ -7,7 +7,7 @@ class Kecamatan extends CI_model
 
   public function get()
   {
-    $query = $this->db->get($this->_table);
+    $query = $this->db->order_by('nama', 'ASC')->get($this->_table);
 
     return $query;
   }

@@ -73,3 +73,7 @@ $route['pkh'] = 'PkhController/index';
 $route['pkh/create'] = 'PkhController/create';
 $route['pkh/edit/(:any)'] = 'PkhController/edit/$1';
 $route['pkh/delete/(:any)'] = 'PkhController/delete/$1';
+
+// Peramalan Controller
+$route['peramalan-kecamatan'] = 'PeramalanController/kecamatan';
+$route['peramalan-kelurahan'] = 'PeramalanController/kelurahan';

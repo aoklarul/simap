@@ -209,6 +209,31 @@
             </a>
           </li>
 
+          <li class="menu">
+            <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
+              <div class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Peramalan</span>
+              </div>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+            <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
+              <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
+                <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
+              </li>
+              <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
+                <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
 
       </nav>
