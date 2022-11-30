@@ -13,12 +13,12 @@
 <div class="row layout-top-spacing">
 
   <div class="action-btn mb-3 col-6">
-    <form action="" method="POST">
+    <form action="" method="GET">
       <div class="input-group">
         <select class="form-select" name="cari">
           <option selected disabled>--Pilih Kelurahan--</option>
           <?php foreach ($kelurahan as $row) : ?>
-            <?php if ($row->id == $this->input->post('cari')) : ?>
+            <?php if ($row->id == $this->input->get('cari')) : ?>
               <option value="<?= $row->id ?>" selected><?= $row->kelurahan ?></option>
             <?php else : ?>
               <option value="<?= $row->id ?>"><?= $row->kelurahan ?></option>
@@ -40,8 +40,8 @@
               <th class="text-center" scope="col">No</th>
               <th scope="col">Periode</th>
               <th scope="col">Kelurahan</th>
-              <th scope="col">Jumlah PKH</th>
               <th class="text-center dt-no-sorting" scope="col">Ramalan</th>
+              <th class="text-center dt-no-sorting" scope="col">Jumlah PKH</th>
             </tr>
           </thead>
           <tbody>
@@ -53,10 +53,8 @@
                 <td class="text-center"><?= $no ?></td>
                 <td><?= $row['periode'] ?></td>
                 <td><?= $row['kel'] ?></td>
-                <td><?= $row['xt'] ?></td>
-                <td class="text-center">
-                  <?= $row['ft'] ?>
-                </td>
+                <td class="text-center"><?= $row['ft'] ?></td>
+                <td class="text-center"><?= $row['xt'] ?></td>
               </tr>
             <?php
               $no++;

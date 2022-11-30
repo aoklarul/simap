@@ -6,7 +6,7 @@ class Exs extends CI_Controller
 
   public function index()
   {
-    $this->load->library("Exsmooth");
+    $this->load->library("Ses_copy");
 
     $data = [
       [
@@ -75,8 +75,11 @@ class Exs extends CI_Controller
         'value' => 9960
       ]
     ];
-    $ex = new Exsmooth();
-    $hasil = $ex->hitung($data);
+    $ex = new Ses_copy();
+    $hasil = $ex->get_constant();
+
+    var_dump($hasil);
+    die;
 
     $this->load->view('result', ['hasil' => $hasil]);
   }

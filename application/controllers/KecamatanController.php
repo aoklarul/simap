@@ -44,10 +44,12 @@ class KecamatanController extends CI_Controller
         } else {
           $file_name = $this->upload->data('file_name');
           $nama = $this->input->post('nama');
+          $warna = $this->input->post('warna');
 
           $data = [
             'nama' => $nama,
-            'geojson' => $file_name
+            'geojson' => $file_name,
+            'warna' => $warna
           ];
         }
       }

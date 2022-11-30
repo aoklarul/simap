@@ -22,7 +22,7 @@ class PeramalanController extends CI_Controller
 
   public function kecamatan()
   {
-    $cariKecamatan = $this->input->post('cari');
+    $cariKecamatan = $this->input->get('cari');
 
     $jumlah_pkh = $this->Pkh->findByKecamatan($cariKecamatan)->result_array();
 
@@ -40,7 +40,7 @@ class PeramalanController extends CI_Controller
 
   public function kelurahan()
   {
-    $cariKelurahan = $this->input->post('cari');
+    $cariKelurahan = $this->input->get('cari');
 
     $jumlah_pkh = $this->Pkh->findByKelurahan($cariKelurahan)->result_array();
 

@@ -68,6 +68,35 @@ class Pkh extends CI_model
     return $query;
   }
 
+  public function byKelurahan($data)
+  {
+    $this->db->select('bulan, tahun, jumlah, kelurahan.nama as kelurahan, kecamatan.nama as kecamatan, kelurahan.warna as warna, kelurahan.geojson as geojson, kelurahan.id as id');
+    $this->db->from($this->_table);
+    $this->db->join('kelurahan', 'kelurahan.id = jumlah_pkh.idKelurahan');
+    $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
+    $this->db->where('kelurahan.nama', $data);
+    $this->db->order_by('tahun', 'ASC');
+    $this->db->order_by('bulan', 'ASC');
+    $query = $this->db->get();
+
+    return $query;
+  }
+
+  public function byKecamatan($data)
+  {
+    $this->db->select('bulan, tahun, SUM(jumlah) as jumlah, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, kecamatan.warna as warna, kecamatan.geojson as geojson, kecamatan.id as id');
+    $this->db->from($this->_table);
+    $this->db->join('kelurahan', 'kelurahan.id = jumlah_pkh.idKelurahan');
+    $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
+    $this->db->where('kecamatan.nama', $data);
+    $this->db->group_by('tahun, bulan, kecamatan.id');
+    $this->db->order_by('tahun', 'ASC');
+    $this->db->order_by('bulan', 'ASC');
+    $query = $this->db->get();
+
+    return $query;
+  }
+
   public function add($data)
   {
     $this->db->insert($this->_table, $data);

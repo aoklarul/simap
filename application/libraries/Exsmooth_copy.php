@@ -1,6 +1,6 @@
 <?php
 
-class Exsmooth
+class Exsmooth_copy
 {
 
     protected $constant = [];
