@@ -54,6 +54,11 @@
               <input type="file" class="form-control file-upload-input <?= form_error('geojson') ? 'is-invalid' : '' ?>" id="geojson" name="geojson">
               <?= form_error('geojson', '<div class="invalid-feedback">', '</div>'); ?>
             </div>
+            <div class="form-group mb-4">
+              <label for="warna">Warna</label>
+              <input type="color" class="form-control file-upload-input <?= form_error('warna') ? 'is-invalid' : '' ?>" id="warna" name="warna" value="<?= $kelurahan->warna ?>">
+              <?= form_error('warna', '<div class="invalid-feedback">', '</div>'); ?>
+            </div>
             <a href="<?= site_url('kelurahan') ?>" type="button" class="btn btn-danger">Kembali</a>
             <button type="submit" class="btn btn-primary">Simpan</button>
           </form>

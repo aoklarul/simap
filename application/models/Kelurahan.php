@@ -7,7 +7,7 @@ class Kelurahan extends CI_model
 
   public function get()
   {
-    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson');
+    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson, kelurahan.warna as warna');
     $this->db->from($this->_table);
     $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
     $this->db->order_by('kelurahan.nama', 'ASC');
@@ -18,7 +18,7 @@ class Kelurahan extends CI_model
 
   public function find($id)
   {
-    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson');
+    $this->db->select('kelurahan.id as id, kecamatan.nama as kecamatan, kelurahan.nama as kelurahan, idKecamatan, kelurahan.geojson as geojson, kelurahan.warna as warna');
     $this->db->from($this->_table);
     $this->db->join('kecamatan', 'kecamatan.id = kelurahan.idKecamatan');
     $this->db->where('kelurahan.id', $id);

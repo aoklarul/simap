@@ -47,11 +47,13 @@ class KelurahanController extends CI_Controller
           $file_name = $this->upload->data('file_name');
           $nama = $this->input->post('nama');
           $idKecamatan = $this->input->post('idKecamatan');
+          $warna = $this->input->post('warna');
 
           $data = [
             'idKecamatan' => $idKecamatan,
             'nama' => $nama,
-            'geojson' => $file_name
+            'geojson' => $file_name,
+            'warna' => $warna
           ];
         }
       }
@@ -91,11 +93,13 @@ class KelurahanController extends CI_Controller
           $file_name = $this->upload->data('file_name');
           $nama = $this->input->post('nama');
           $idKecamatan = $this->input->post('idKecamatan');
+          $warna = $this->input->post('warna');
 
           $data = [
             'idKecamatan' => $idKecamatan,
             'nama' => $nama,
-            'geojson' => $file_name
+            'geojson' => $file_name,
+            'warna' => $warna
           ];
         }
       }
@@ -103,10 +107,12 @@ class KelurahanController extends CI_Controller
       if (empty($_FILES['geojson']['name'])) {
         $nama = $this->input->post('nama');
         $idKecamatan = $this->input->post('idKecamatan');
+        $warna = $this->input->post('warna');
 
         $data = [
           'idKecamatan' => $idKecamatan,
-          'nama' => $nama
+          'nama' => $nama,
+          'warna' => $warna
         ];
       }
 
