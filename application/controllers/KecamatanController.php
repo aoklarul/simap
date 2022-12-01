@@ -6,7 +6,15 @@ class KecamatanController extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    if (!$this->session->userdata('username')) {
+      redirect('login');
+    } elseif ($this->session->userdata('level_user') !== 'Admin') {
+      redirect('blocked');
+    }
+
     $this->load->library('form_validation');
+    $this->load->model('Users');
     $this->load->model('Kecamatan');
   }
 
@@ -14,6 +22,7 @@ class KecamatanController extends CI_Controller
   {
     $this->template->load('main/app', 'kecamatan/index', [
       'title' => 'Kecamatan',
+      'user' => $this->Users->checkLogin()->row(),
       'page_title' => 'Data Kecamatan',
       'kecamatan' => $this->Kecamatan->get()->result()
     ]);
@@ -29,6 +38,7 @@ class KecamatanController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'kecamatan/create', [
         'title' => 'Kecamatan',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Tambah Data Kecamatan'
       ]);
     } else {
@@ -68,6 +78,7 @@ class KecamatanController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'kecamatan/edit', [
         'title' => 'Kecamatan',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Ubah Data Kecamatan',
         'kecamatan' => $this->Kecamatan->find($id)->row()
       ]);

@@ -28,7 +28,7 @@
           <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group mb-4">
               <label for="nama">Kelurahan</label>
-              <input type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= $kelurahan->kelurahan ?>" placeholder="Nama Kelurahan">
+              <input type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= $kelurahan->kelurahan ?>" disabled>
               <?= form_error('nama', '<div class="invalid-feedback">', '</div>'); ?>
             </div>
             <div class="form-group mb-4">

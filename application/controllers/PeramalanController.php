@@ -6,6 +6,12 @@ class PeramalanController extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    if (!$this->session->userdata('username')) {
+      redirect('login');
+    }
+
+    $this->load->model('Users');
     $this->load->model('Pkh');
     $this->load->model('Kecamatan');
     $this->load->model('Kelurahan');
@@ -16,6 +22,7 @@ class PeramalanController extends CI_Controller
   {
     $this->template->load('main/app', 'dashboard/index', [
       'title' => 'Dashboard',
+      'user' => $this->Users->checkLogin()->row(),
       'page_title' => 'Pemetaan'
     ]);
   }
@@ -32,6 +39,7 @@ class PeramalanController extends CI_Controller
     $this->template->load('main/app', 'peramalan/kecamatan/index', [
       'title' => 'Peramalan Kecamatan',
       'page_title' => 'Peramalan',
+      'user' => $this->Users->checkLogin()->row(),
       'kecamatan' => $this->Kecamatan->get()->result(),
       'jumlah_pkh' => $jumlah_pkh,
       'hasil' => $hasil
@@ -50,6 +58,7 @@ class PeramalanController extends CI_Controller
     $this->template->load('main/app', 'peramalan/kelurahan/index', [
       'title' => 'Peramalan Kelurahan',
       'page_title' => 'Peramalan',
+      'user' => $this->Users->checkLogin()->row(),
       'kelurahan' => $this->Kelurahan->get()->result(),
       'jumlah_pkh' => $jumlah_pkh,
       'hasil' => $hasil

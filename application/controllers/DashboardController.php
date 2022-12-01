@@ -6,7 +6,13 @@ class DashboardController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        if (!$this->session->userdata('username')) {
+            redirect('login');
+        }
+
         $this->load->model('Pkh');
+        $this->load->model('Users');
         $this->load->library('Ses_pemetaan');
     }
 
@@ -15,13 +21,10 @@ class DashboardController extends CI_Controller
 
         $kecamatans = $this->kecamatan();
         $kelurahans = $this->kelurahan();
-        // var_dump($kelurahans);
-        // die;
-
-
 
         $this->template->load('main/app', 'dashboard/index', [
             'title' => 'Dashboard',
+            'user' => $this->Users->checkLogin()->row(),
             'page_title' => 'Pemetaan',
             'kelurahan' => $kelurahans,
             'kecamatan' => $kecamatans

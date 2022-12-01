@@ -49,12 +49,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'DashboardController';
+$route['default_controller'] = 'AuthController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Dashboard Controller
 $route['dashboard'] = 'DashboardController/index';
+
+// Dashboard Controller
+$route['login'] = 'AuthController/index';
+$route['logout'] = 'AuthController/logout';
+$route['blocked'] = 'AuthController/blocked';
 
 // Kecamatan Controller
 $route['kecamatan'] = 'KecamatanController/index';
@@ -67,6 +72,14 @@ $route['kelurahan'] = 'KelurahanController/index';
 $route['kelurahan/create'] = 'KelurahanController/create';
 $route['kelurahan/edit/(:any)'] = 'KelurahanController/edit/$1';
 $route['kelurahan/delete/(:any)'] = 'KelurahanController/delete/$1';
+
+// User Controller
+$route['user'] = 'UserController/index';
+$route['user/create'] = 'UserController/create';
+$route['user/reset/(:any)'] = 'UserController/reset_password/$1';
+$route['user/delete/(:any)'] = 'UserController/delete/$1';
+$route['user/aktif/(:any)'] = 'UserController/aktif/$1';
+$route['user/nonaktif/(:any)'] = 'UserController/nonaktif/$1';
 
 // Jumlah PKH Controller
 $route['pkh'] = 'PkhController/index';
