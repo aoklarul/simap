@@ -6,7 +6,15 @@ class PkhController extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    if (!$this->session->userdata('username')) {
+      redirect('login');
+    } elseif ($this->session->userdata('level_user') !== 'Pengawas') {
+      redirect('blocked');
+    }
+
     $this->load->library('form_validation');
+    $this->load->model('Users');
     $this->load->model('Pkh');
     $this->load->model('Kelurahan');
     $this->load->model('Kecamatan');
@@ -16,6 +24,7 @@ class PkhController extends CI_Controller
   {
     $this->template->load('main/app', 'pkh/index', [
       'title' => 'Jumlah PKH',
+      'user' => $this->Users->checkLogin()->row(),
       'page_title' => 'Data Jumlah PKH',
       'jumlah_pkh' => $this->Pkh->get()->result()
     ]);
@@ -32,6 +41,7 @@ class PkhController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'pkh/create', [
         'title' => 'Jumlah PKH',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Tambah Jumlah PKH',
         'bulan' => $month,
         'kelurahan' => $this->Kelurahan->get()->result()
@@ -70,6 +80,7 @@ class PkhController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'pkh/edit', [
         'title' => 'Jumlah PKH',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Ubah Data Jumlah PKH',
         'bulan' => $month,
         'kelurahan' => $this->Kelurahan->get()->result(),
@@ -77,13 +88,7 @@ class PkhController extends CI_Controller
       ]);
     } else {
 
-      // var_dump($this->input->post());
-      // die;
-
       $jumlah = $this->input->post('jumlah');
-      // $bulan = $this->input->post('bulan');
-      // $tahun = $this->input->post('tahun');
-      // $idKelurahan = $this->input->post('idKelurahan');
 
       $data = $jumlah;
 

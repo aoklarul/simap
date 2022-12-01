@@ -80,7 +80,7 @@
           <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="avatar-container">
               <div class="avatar avatar-sm avatar-indicators avatar-online">
-                <img alt="avatar" src="<?= base_url() ?>assets/src/assets/img/profile-30.png" class="rounded-circle">
+                <img alt="avatar" src="<?= base_url() ?>assets/users/<?= $user->image ?>" class="rounded-circle">
               </div>
             </div>
           </a>
@@ -88,10 +88,10 @@
           <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
             <div class="user-profile-section">
               <div class="media mx-auto">
-                <img src="<?= base_url() ?>assets/src/assets/img/profile-30.png" class="img-fluid me-2" alt="avatar">
+                <img src="<?= base_url() ?>assets/users/<?= $user->image ?>" class="img-fluid me-2" alt="avatar">
                 <div class="media-body">
-                  <h5>Muhammad Chairul Febriansyah</h5>
-                  <p>Administrator</p>
+                  <h5><?= $user->name ?></h5>
+                  <p><?= $user->level_user ?></p>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@
               </a>
             </div>
             <div class="dropdown-item">
-              <a href="javascript:void(0);">
+              <a href="<?= site_url('logout') ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
                   <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                   <polyline points="16 17 21 12 16 7"></polyline>
@@ -166,73 +166,133 @@
             </a>
           </li>
 
-          <li class="menu menu-heading">
-            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg><span>DATA MASTER</span></div>
-          </li>
+          <?php if ($this->session->userdata('level_user') == 'Admin') : ?>
 
-          <li class="menu <?= $this->uri->segment(1) == 'kecamatan' ? 'active' : ''; ?>">
-            <a href="<?= site_url('kecamatan') ?>" aria-expanded="false" class="dropdown-toggle">
-              <div class="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns">
-                  <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
-                </svg>
-                <span>Kecamatan</span>
-              </div>
-            </a>
-          </li>
+            <li class="menu menu-heading">
+              <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg><span>DATA MASTER</span></div>
+            </li>
 
-          <li class="menu <?= $this->uri->segment(1) == 'kelurahan' ? 'active' : ''; ?>">
-            <a href="<?= site_url('kelurahan') ?>" aria-expanded="false" class="dropdown-toggle">
-              <div class="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                <span>Kelurahan</span>
-              </div>
-            </a>
-          </li>
+            <li class="menu <?= $this->uri->segment(1) == 'kecamatan' ? 'active' : ''; ?>">
+              <a href="<?= site_url('kecamatan') ?>" aria-expanded="false" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns">
+                    <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
+                  </svg>
+                  <span>Kecamatan</span>
+                </div>
+              </a>
+            </li>
 
-          <li class="menu <?= $this->uri->segment(1) == 'pkh' ? 'active' : ''; ?>">
-            <a href="<?= site_url('pkh') ?>" aria-expanded="false" class="dropdown-toggle">
-              <div class="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                <span>Jumlah PKH</span>
-              </div>
-            </a>
-          </li>
+            <li class="menu <?= $this->uri->segment(1) == 'kelurahan' ? 'active' : ''; ?>">
+              <a href="<?= site_url('kelurahan') ?>" aria-expanded="false" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  <span>Kelurahan</span>
+                </div>
+              </a>
+            </li>
 
-          <li class="menu">
-            <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
-              <div class="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                <span>Peramalan</span>
-              </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </div>
-            </a>
-            <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
-              <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
-                <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
-              </li>
-              <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
-                <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
-              </li>
-            </ul>
-          </li>
+            <li class="menu <?= $this->uri->segment(1) == 'user' ? 'active' : ''; ?>">
+              <a href="<?= site_url('user') ?>" aria-expanded="false" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  <span>User</span>
+                </div>
+              </a>
+            </li>
+
+            <li class="menu menu-heading">
+              <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg><span>KELOLA DATA</span></div>
+            </li>
+
+            <li class="menu">
+              <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>Peramalan</span>
+                </div>
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </a>
+              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
+                <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
+                </li>
+                <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
+                </li>
+              </ul>
+            </li>
+
+          <?php else : ?>
+
+            <li class="menu menu-heading">
+              <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg><span>KELOLA DATA</span></div>
+            </li>
+
+            <li class="menu <?= $this->uri->segment(1) == 'pkh' ? 'active' : ''; ?>">
+              <a href="<?= site_url('pkh') ?>" aria-expanded="false" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  <span>Jumlah PKH</span>
+                </div>
+              </a>
+            </li>
+
+            <li class="menu">
+              <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>Peramalan</span>
+                </div>
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </a>
+              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
+                <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
+                </li>
+                <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
+                </li>
+              </ul>
+            </li>
+
+          <?php endif; ?>
+
+
+
+
 
         </ul>
 

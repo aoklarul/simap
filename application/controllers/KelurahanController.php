@@ -6,7 +6,15 @@ class KelurahanController extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    if (!$this->session->userdata('username')) {
+      redirect('login');
+    } elseif ($this->session->userdata('level_user') !== 'Admin') {
+      redirect('blocked');
+    }
+
     $this->load->library('form_validation');
+    $this->load->model('Users');
     $this->load->model('Kelurahan');
     $this->load->model('Kecamatan');
   }
@@ -15,6 +23,7 @@ class KelurahanController extends CI_Controller
   {
     $this->template->load('main/app', 'kelurahan/index', [
       'title' => 'Kelurahan',
+      'user' => $this->Users->checkLogin()->row(),
       'page_title' => 'Data Kelurahan',
       'kelurahan' => $this->Kelurahan->get()->result()
     ]);
@@ -30,6 +39,7 @@ class KelurahanController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'kelurahan/create', [
         'title' => 'Kelurahan',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Tambah Data Kelurahan',
         'kecamatan' => $this->Kecamatan->get()->result()
       ]);
@@ -72,6 +82,7 @@ class KelurahanController extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       $this->template->load('main/app', 'kelurahan/edit', [
         'title' => 'Kelurahan',
+        'user' => $this->Users->checkLogin()->row(),
         'page_title' => 'Ubah Data Kelurahan',
         'kelurahan' => $this->Kelurahan->find($id)->row(),
         'kecamatan' => $this->Kecamatan->get()->result()
