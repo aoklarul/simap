@@ -81,6 +81,11 @@ $route['user/delete/(:any)'] = 'UserController/delete/$1';
 $route['user/aktif/(:any)'] = 'UserController/aktif/$1';
 $route['user/nonaktif/(:any)'] = 'UserController/nonaktif/$1';
 
+// User Controller
+$route['profil'] = 'ProfilController/index';
+$route['profil/edit-password'] = 'ProfilController/edit_password';
+$route['profil/edit'] = 'ProfilController/edit';
+
 // Jumlah PKH Controller
 $route['pkh'] = 'PkhController/index';
 $route['pkh/create'] = 'PkhController/create';
