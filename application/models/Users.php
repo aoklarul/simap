@@ -43,4 +43,22 @@ class Users extends CI_model
     $this->db->where($this->_primaryKey, $id);
     $this->db->delete($this->_table);
   }
+
+  public function edit_profil($data)
+  {
+    $this->db->set('name', $data['name']);
+    $this->db->set('email', $data['email']);
+    if ($data['image'] != NULL) {
+      $this->db->set('image', $data['image']);
+    }
+    $this->db->where('username', $this->session->userdata('username'));
+    $this->db->update($this->_table);
+  }
+
+  public function edit_password($password_hash)
+  {
+    $this->db->set('password', $password_hash);
+    $this->db->where('username', $this->session->userdata('username'));
+    $this->db->update($this->_table);
+  }
 }
