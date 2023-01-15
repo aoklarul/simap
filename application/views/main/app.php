@@ -171,7 +171,7 @@
             <li class="menu menu-heading">
               <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg><span>DATA MASTER</span></div>
+                </svg><span>KELOLA DATA</span></div>
             </li>
 
             <li class="menu <?= $this->uri->segment(1) == 'kecamatan' ? 'active' : ''; ?>">
@@ -211,20 +211,14 @@
               </a>
             </li>
 
-            <li class="menu menu-heading">
-              <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg><span>KELOLA DATA</span></div>
-            </li>
-
             <li class="menu">
-              <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
+              <a href="#prediksi" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'prediksi-kecamatan' || $this->uri->segment(1) == 'prediksi-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
                 <div class="">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                   </svg>
-                  <span>Peramalan</span>
+                  <span>Prediksi</span>
                 </div>
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -232,12 +226,12 @@
                   </svg>
                 </div>
               </a>
-              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
-                <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
-                  <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
+              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'prediksi-kecamatan' || $this->uri->segment(1) == 'prediksi-kelurahan' ? 'show' : ''; ?>" id="prediksi" data-bs-parent="#accordionExample">
+                <li class="<?= $this->uri->segment(1) == 'prediksi-kecamatan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('prediksi-kecamatan') ?>"> Kecamatan </a>
                 </li>
-                <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
-                  <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
+                <li class="<?= $this->uri->segment(1) == 'prediksi-kelurahan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('prediksi-kelurahan') ?>"> Kelurahan </a>
                 </li>
               </ul>
             </li>
@@ -264,13 +258,13 @@
             </li>
 
             <li class="menu">
-              <a href="#peramalan" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
+              <a href="#prediksi" data-bs-toggle="collapse" aria-expanded="<?= $this->uri->segment(1) == 'prediksi-kecamatan' || $this->uri->segment(1) == 'prediksi-kelurahan' ? 'true' : 'false'; ?>" class="dropdown-toggle">
                 <div class="">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                   </svg>
-                  <span>Peramalan</span>
+                  <span>Prediksi</span>
                 </div>
                 <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -278,12 +272,12 @@
                   </svg>
                 </div>
               </a>
-              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'peramalan-kecamatan' || $this->uri->segment(1) == 'peramalan-kelurahan' ? 'show' : ''; ?>" id="peramalan" data-bs-parent="#accordionExample">
-                <li class="<?= $this->uri->segment(1) == 'peramalan-kecamatan' ? 'active' : ''; ?>">
-                  <a href="<?= site_url('peramalan-kecamatan') ?>"> Kecamatan </a>
+              <ul class="collapse submenu list-unstyled <?= $this->uri->segment(1) == 'prediksi-kecamatan' || $this->uri->segment(1) == 'prediksi-kelurahan' ? 'show' : ''; ?>" id="prediksi" data-bs-parent="#accordionExample">
+                <li class="<?= $this->uri->segment(1) == 'prediksi-kecamatan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('prediksi-kecamatan') ?>"> Kecamatan </a>
                 </li>
-                <li class="<?= $this->uri->segment(1) == 'peramalan-kelurahan' ? 'active' : ''; ?>">
-                  <a href="<?= site_url('peramalan-kelurahan') ?>"> Kelurahan </a>
+                <li class="<?= $this->uri->segment(1) == 'prediksi-kelurahan' ? 'active' : ''; ?>">
+                  <a href="<?= site_url('prediksi-kelurahan') ?>"> Kelurahan </a>
                 </li>
               </ul>
             </li>
@@ -374,7 +368,7 @@
             "kecamatan":"' . $kec['kec'] . '",
             "geojson":"' . $kec['geojson'] . '",
             "warna":"' . $kec['warna'] . '",
-			      "ramalan":"' . $kec['ft'] . '",
+			      "diksi":"' . $kec['ft'] . '",
             "jumlah_sekarang":"' . $kec['jumlah_sekarang'] . '",
             "periode_sekarang":"' . $kec['periode_sekarang'] . '",
 		
@@ -420,13 +414,13 @@
       htmlKecamatan += '<td>' + dataKecamatan[i].jumlah_sekarang + '</td>';
       htmlKecamatan += '</tr>';
       htmlKecamatan += '<tr>';
-      htmlKecamatan += '<td>Ramalan ' + dataKecamatan[i].periode + '</td>';
+      htmlKecamatan += '<td>Prediksi ' + dataKecamatan[i].periode + '</td>';
       htmlKecamatan += '<td>:</td>';
-      htmlKecamatan += '<td>' + dataKecamatan[i].ramalan + '</td>';
+      htmlKecamatan += '<td>' + dataKecamatan[i].diksi + '</td>';
       htmlKecamatan += '</tr>';
       htmlKecamatan += '</table>';
       htmlKecamatan += '<div class="text-center mt-3">';
-      htmlKecamatan += '<a href="<?= site_url('peramalan-kecamatan?cari=') ?>' + dataKecamatan[i].id + '" target="_BLANK">Lihat Tabel</a>';
+      htmlKecamatan += '<a href="<?= site_url('prediksi-kecamatan?cari=') ?>' + dataKecamatan[i].id + '" target="_BLANK">Lihat Tabel</a>';
       htmlKecamatan += '</div>';
 
       l.bindPopup(htmlKecamatan);
@@ -463,7 +457,7 @@
             "kelurahan":"' . $kel['kel'] . '",
             "geojson":"' . $kel['geojson'] . '",
             "warna":"' . $kel['warna'] . '",
-			      "ramalan":"' . $kel['ft'] . '",
+			      "diksi":"' . $kel['ft'] . '",
             "jumlah_sekarang":"' . $kel['jumlah_sekarang'] . '",
             "periode_sekarang":"' . $kel['periode_sekarang'] . '",
 		
@@ -509,13 +503,13 @@
       htmlKelurahan += '<td>' + dataKelurahan[i].jumlah_sekarang + '</td>';
       htmlKelurahan += '</tr>';
       htmlKelurahan += '<tr>';
-      htmlKelurahan += '<td>Ramalan ' + dataKelurahan[i].periode + '</td>';
+      htmlKelurahan += '<td>Prediksi ' + dataKelurahan[i].periode + '</td>';
       htmlKelurahan += '<td>:</td>';
-      htmlKelurahan += '<td>' + dataKelurahan[i].ramalan + '</td>';
+      htmlKelurahan += '<td>' + dataKelurahan[i].diksi + '</td>';
       htmlKelurahan += '</tr>';
       htmlKelurahan += '</table>';
       htmlKelurahan += '<div class="text-center mt-3">';
-      htmlKelurahan += '<a href="<?= site_url('peramalan-kelurahan?cari=') ?>' + dataKelurahan[i].id + '" target="_BLANK">Lihat Tabel</a>';
+      htmlKelurahan += '<a href="<?= site_url('prediksi-kelurahan?cari=') ?>' + dataKelurahan[i].id + '" target="_BLANK">Lihat Tabel</a>';
       htmlKelurahan += '</div>';
 
       l.bindPopup(htmlKelurahan);
