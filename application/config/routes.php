@@ -55,6 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Dashboard Controller
 $route['dashboard'] = 'DashboardController/index';
+$route['dashboard/grafik-kecamatan'] = 'DashboardController/grafik_kecamatan';
+$route['dashboard/grafik-kelurahan'] = 'DashboardController/grafik_kelurahan';
 
 // Dashboard Controller
 $route['login'] = 'AuthController/index';
