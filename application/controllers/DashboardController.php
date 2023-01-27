@@ -14,6 +14,8 @@ class DashboardController extends CI_Controller
         $this->load->model('Pkh');
         $this->load->model('Users');
         $this->load->library('Ses_pemetaan');
+        $this->load->model('Kecamatan');
+        $this->load->model('Kelurahan');
     }
 
     public function index()
@@ -63,5 +65,77 @@ class DashboardController extends CI_Controller
         }
 
         return $kel;
+    }
+
+    public function grafik_kecamatan()
+    {
+        $this->load->library('Ses');
+
+        $cariKecamatan = $this->input->get('cari');
+
+        $jumlah_pkh = $this->Pkh->findByKecamatan($cariKecamatan)->result_array();
+
+        $ex = new Ses();
+        $hasil1 = $ex->hitung($jumlah_pkh, 0.1);
+        $hasil2 = $ex->hitung($jumlah_pkh, 0.2);
+        $hasil3 = $ex->hitung($jumlah_pkh, 0.3);
+        $hasil4 = $ex->hitung($jumlah_pkh, 0.4);
+        $hasil5 = $ex->hitung($jumlah_pkh, 0.5);
+        $hasil6 = $ex->hitung($jumlah_pkh, 0.6);
+        $hasil7 = $ex->hitung($jumlah_pkh, 0.7);
+        $hasil8 = $ex->hitung($jumlah_pkh, 0.8);
+        $hasil9 = $ex->hitung($jumlah_pkh, 0.9);
+
+        $this->template->load('main/app', 'dashboard/grafik_kecamatan', [
+            'title' => 'Dashboard',
+            'user' => $this->Users->checkLogin()->row(),
+            'page_title' => 'Grafik Kecamatan',
+            'kecamatan' => $this->Kecamatan->get()->result(),
+            'hasil1' => $hasil1,
+            'hasil2' => $hasil2,
+            'hasil3' => $hasil3,
+            'hasil4' => $hasil4,
+            'hasil5' => $hasil5,
+            'hasil6' => $hasil6,
+            'hasil7' => $hasil7,
+            'hasil8' => $hasil8,
+            'hasil9' => $hasil9
+        ]);
+    }
+
+    public function grafik_kelurahan()
+    {
+        $this->load->library('Ses');
+
+        $cariKelurahan = $this->input->get('cari');
+
+        $jumlah_pkh = $this->Pkh->findByKelurahan($cariKelurahan)->result_array();
+
+        $ex = new Ses();
+        $hasil1 = $ex->hitung($jumlah_pkh, 0.1);
+        $hasil2 = $ex->hitung($jumlah_pkh, 0.2);
+        $hasil3 = $ex->hitung($jumlah_pkh, 0.3);
+        $hasil4 = $ex->hitung($jumlah_pkh, 0.4);
+        $hasil5 = $ex->hitung($jumlah_pkh, 0.5);
+        $hasil6 = $ex->hitung($jumlah_pkh, 0.6);
+        $hasil7 = $ex->hitung($jumlah_pkh, 0.7);
+        $hasil8 = $ex->hitung($jumlah_pkh, 0.8);
+        $hasil9 = $ex->hitung($jumlah_pkh, 0.9);
+
+        $this->template->load('main/app', 'dashboard/grafik_kelurahan', [
+            'title' => 'Dashboard',
+            'user' => $this->Users->checkLogin()->row(),
+            'page_title' => 'Grafik Kelurahan',
+            'kelurahan' => $this->Kelurahan->get()->result(),
+            'hasil1' => $hasil1,
+            'hasil2' => $hasil2,
+            'hasil3' => $hasil3,
+            'hasil4' => $hasil4,
+            'hasil5' => $hasil5,
+            'hasil6' => $hasil6,
+            'hasil7' => $hasil7,
+            'hasil8' => $hasil8,
+            'hasil9' => $hasil9
+        ]);
     }
 }

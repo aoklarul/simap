@@ -284,10 +284,6 @@
 
           <?php endif; ?>
 
-
-
-
-
         </ul>
 
       </nav>
@@ -333,208 +329,16 @@
   <!-- END GLOBAL MANDATORY SCRIPTS -->
 
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+  <script src="<?= base_url() ?>assets/src/chartjs/Chart.bundle.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
   <script src="<?= base_url() ?>assets/src/leaflet/leaflet.ajax.js"></script>
 
   <script src="<?= base_url() ?>assets/src/plugins/src/table/datatable/datatables.js"></script>
-  <script>
-    $('#zero-config').DataTable({
-      "dom": "<'dt--top-section'<'row'<'col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center'l><'col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3'f>>>" +
-        "<'table-responsive'tr>" +
-        "<'dt--bottom-section d-sm-flex justify-content-sm-between text-center'<'dt--pages-count  mb-sm-0 mb-3'i><'dt--pagination'p>>",
-      "oLanguage": {
-        "oPaginate": {
-          "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
-          "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
-        },
-        "sInfo": "Showing page _PAGE_ of _PAGES_",
-        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-        "sSearchPlaceholder": "Search...",
-        "sLengthMenu": "Results :  _MENU_",
-      },
-      "stripeClasses": [],
-      "lengthMenu": [7, 10, 20, 50],
-      "pageLength": 10
-    });
-  </script>
 
-  <script>
-    <?php
+  <?php include 'grafik_kecamatan.php' ?>
+  <?php include 'dt.php' ?>
+  <?php include 'pemetaan.php' ?>
 
-    foreach ($kecamatan as $kec) {
-      $arrayKecamatan[] = '{
-            "id":"' . $kec['id'] . '",
-            "periode":"' . $kec['periode'] . '",
-            "kecamatan":"' . $kec['kec'] . '",
-            "geojson":"' . $kec['geojson'] . '",
-            "warna":"' . $kec['warna'] . '",
-			      "diksi":"' . $kec['ft'] . '",
-            "jumlah_sekarang":"' . $kec['jumlah_sekarang'] . '",
-            "periode_sekarang":"' . $kec['periode_sekarang'] . '",
-		
-	}';
-    } ?>
-    const dataKecamatan = [<?= implode(',', $arrayKecamatan); ?>];
-
-
-    const kecMap = L.map('mapKecamatan').setView([-0.027241, 109.341850], 12);
-
-    const tilesKecamatan = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-
-    kecMap.addLayer(tilesKecamatan);
-
-    function iconByName(name) {
-      return '<i class="icon" style="background-color:' + name + ';border-radius:50%"></i>';
-    }
-
-    function getColorKecamatan(Kecamatan) {
-      for (i in dataKecamatan) {
-
-        if (dataKecamatan[i].kecamatan.toUpperCase() == Kecamatan) {
-          return dataKecamatan[i].warna;
-        }
-      }
-    }
-
-    function popUp(f, l) {
-      var htmlKecamatan = '';
-
-      htmlKecamatan += '<table>';
-      htmlKecamatan += '<tr>';
-      htmlKecamatan += '<td>Kecamatan</td>';
-      htmlKecamatan += '<td>:</td>';
-      htmlKecamatan += '<td>' + dataKecamatan[i].kecamatan + '</td>';
-      htmlKecamatan += '</tr>';
-      htmlKecamatan += '<tr>';
-      htmlKecamatan += '<td>Periode ' + dataKecamatan[i].periode_sekarang + '</td>';
-      htmlKecamatan += '<td>:</td>';
-      htmlKecamatan += '<td>' + dataKecamatan[i].jumlah_sekarang + '</td>';
-      htmlKecamatan += '</tr>';
-      htmlKecamatan += '<tr>';
-      htmlKecamatan += '<td>Prediksi ' + dataKecamatan[i].periode + '</td>';
-      htmlKecamatan += '<td>:</td>';
-      htmlKecamatan += '<td>' + dataKecamatan[i].diksi + '</td>';
-      htmlKecamatan += '</tr>';
-      htmlKecamatan += '</table>';
-      htmlKecamatan += '<div class="text-center mt-3">';
-      htmlKecamatan += '<a href="<?= site_url('prediksi-kecamatan?cari=') ?>' + dataKecamatan[i].id + '" target="_BLANK">Lihat Tabel</a>';
-      htmlKecamatan += '</div>';
-
-      l.bindPopup(htmlKecamatan);
-
-    }
-
-    for (i in dataKecamatan) {
-      let layer = {
-        name: dataKecamatan[i].kecamatan,
-        icon: iconByName(dataKecamatan[i].warna),
-        layer: new L.GeoJSON.AJAX(["<?= base_url('assets/geojson/kecamatan/') ?>" + dataKecamatan[i].geojson], {
-          onEachFeature: popUp,
-          style: function(feature) {
-            let Kecamatan = feature.properties.KECAMATAN;
-            return {
-              "color": getColorKecamatan(Kecamatan),
-              "weight": 1,
-              "opacity": 1
-            }
-
-          },
-        }).addTo(kecMap)
-      }
-    }
-  </script>
-
-  <script>
-    <?php
-
-    foreach ($kelurahan as $kel) {
-      $arrayKelurahan[] = '{
-            "id":"' . $kel['id'] . '",
-            "periode":"' . $kel['periode'] . '",
-            "kelurahan":"' . $kel['kel'] . '",
-            "geojson":"' . $kel['geojson'] . '",
-            "warna":"' . $kel['warna'] . '",
-			      "diksi":"' . $kel['ft'] . '",
-            "jumlah_sekarang":"' . $kel['jumlah_sekarang'] . '",
-            "periode_sekarang":"' . $kel['periode_sekarang'] . '",
-		
-	}';
-    } ?>
-    const dataKelurahan = [<?= implode(',', $arrayKelurahan); ?>];
-
-
-    const kelMap = L.map('mapKelurahan').setView([-0.027241, 109.341850], 12);
-
-    const tilesKelurahan = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-
-    kelMap.addLayer(tilesKelurahan);
-
-    function iconByName(name) {
-      return '<i class="icon" style="background-color:' + name + ';border-radius:50%"></i>';
-    }
-
-    function getColorKelurahan(Kelurahan) {
-      for (i in dataKelurahan) {
-
-        if (dataKelurahan[i].kelurahan.toUpperCase() == Kelurahan) {
-          return dataKelurahan[i].warna;
-        }
-      }
-    }
-
-    function popUp(f, l) {
-      let htmlKelurahan = '';
-
-      htmlKelurahan += '<table>';
-      htmlKelurahan += '<tr>';
-      htmlKelurahan += '<td>Kelurahan</td>';
-      htmlKelurahan += '<td>:</td>';
-      htmlKelurahan += '<td>' + dataKelurahan[i].kelurahan + '</td>';
-      htmlKelurahan += '</tr>';
-      htmlKelurahan += '<tr>';
-      htmlKelurahan += '<td>Periode ' + dataKelurahan[i].periode_sekarang + '</td>';
-      htmlKelurahan += '<td>:</td>';
-      htmlKelurahan += '<td>' + dataKelurahan[i].jumlah_sekarang + '</td>';
-      htmlKelurahan += '</tr>';
-      htmlKelurahan += '<tr>';
-      htmlKelurahan += '<td>Prediksi ' + dataKelurahan[i].periode + '</td>';
-      htmlKelurahan += '<td>:</td>';
-      htmlKelurahan += '<td>' + dataKelurahan[i].diksi + '</td>';
-      htmlKelurahan += '</tr>';
-      htmlKelurahan += '</table>';
-      htmlKelurahan += '<div class="text-center mt-3">';
-      htmlKelurahan += '<a href="<?= site_url('prediksi-kelurahan?cari=') ?>' + dataKelurahan[i].id + '" target="_BLANK">Lihat Tabel</a>';
-      htmlKelurahan += '</div>';
-
-      l.bindPopup(htmlKelurahan);
-
-    }
-
-    for (i in dataKelurahan) {
-      let layer = {
-        name: dataKelurahan[i].kelurahan,
-        icon: iconByName(dataKelurahan[i].warna),
-        layer: new L.GeoJSON.AJAX(["<?= base_url('assets/geojson/kelurahan/') ?>" + dataKelurahan[i].geojson], {
-          onEachFeature: popUp,
-          style: function(feature) {
-            let Kelurahan = feature.properties.DESA;
-            return {
-              "color": getColorKelurahan(Kelurahan),
-              "weight": 1,
-              "opacity": 1
-            }
-
-          },
-        }).addTo(kelMap)
-      }
-    }
-  </script>
 
   <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
