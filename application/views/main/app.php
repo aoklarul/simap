@@ -335,7 +335,11 @@
 
   <script src="<?= base_url() ?>assets/src/plugins/src/table/datatable/datatables.js"></script>
 
-  <?php include 'grafik_kecamatan.php' ?>
+  <?php if ($this->uri->segment(2) == 'grafik-kecamatan' || $this->uri->segment(2) == 'grafik-kelurahan') {
+    include 'grafik_kecamatan.php';
+  }
+
+  ?>
   <?php include 'dt.php' ?>
   <?php include 'pemetaan.php' ?>
 

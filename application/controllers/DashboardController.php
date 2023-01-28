@@ -21,19 +21,53 @@ class DashboardController extends CI_Controller
     public function index()
     {
 
-        $kecamatans = $this->kecamatan();
-        $kelurahans = $this->kelurahan();
+        $kecamatan1 = $this->kecamatan(0.1);
+        $kecamatan2 = $this->kecamatan(0.2);
+        $kecamatan3 = $this->kecamatan(0.3);
+        $kecamatan4 = $this->kecamatan(0.4);
+        $kecamatan5 = $this->kecamatan(0.5);
+        $kecamatan6 = $this->kecamatan(0.6);
+        $kecamatan7 = $this->kecamatan(0.7);
+        $kecamatan8 = $this->kecamatan(0.8);
+        $kecamatan9 = $this->kecamatan(0.9);
+
+        $kelurahan1 = $this->kelurahan(0.1);
+        $kelurahan2 = $this->kelurahan(0.2);
+        $kelurahan3 = $this->kelurahan(0.3);
+        $kelurahan4 = $this->kelurahan(0.4);
+        $kelurahan5 = $this->kelurahan(0.5);
+        $kelurahan6 = $this->kelurahan(0.6);
+        $kelurahan7 = $this->kelurahan(0.7);
+        $kelurahan8 = $this->kelurahan(0.8);
+        $kelurahan9 = $this->kelurahan(0.9);
 
         $this->template->load('main/app', 'dashboard/index', [
             'title' => 'Dashboard',
             'user' => $this->Users->checkLogin()->row(),
             'page_title' => 'Pemetaan',
-            'kelurahan' => $kelurahans,
-            'kecamatan' => $kecamatans
+            'kelurahan1' => $kelurahan1,
+            'kelurahan2' => $kelurahan2,
+            'kelurahan3' => $kelurahan3,
+            'kelurahan4' => $kelurahan4,
+            'kelurahan5' => $kelurahan5,
+            'kelurahan6' => $kelurahan6,
+            'kelurahan7' => $kelurahan7,
+            'kelurahan8' => $kelurahan8,
+            'kelurahan9' => $kelurahan9,
+            'kecamatan1' => $kecamatan1,
+            'kecamatan2' => $kecamatan2,
+            'kecamatan3' => $kecamatan3,
+            'kecamatan4' => $kecamatan4,
+            'kecamatan5' => $kecamatan5,
+            'kecamatan6' => $kecamatan6,
+            'kecamatan7' => $kecamatan7,
+            'kecamatan8' => $kecamatan8,
+            'kecamatan9' => $kecamatan9
+
         ]);
     }
 
-    public function kecamatan()
+    public function kecamatan($konstanta)
     {
         $this->load->model('Kecamatan');
         $ex = new Ses_pemetaan();
@@ -44,13 +78,13 @@ class DashboardController extends CI_Controller
 
         foreach ($getKecamatan as $kecamatan) {
             $data = $this->Pkh->byKecamatan($kecamatan['nama'])->result_array();
-            array_push($kec, $ex->hitung($data));
+            array_push($kec, $ex->hitung($data, $konstanta));
         }
 
         return $kec;
     }
 
-    public function kelurahan()
+    public function kelurahan($konstanta)
     {
         $this->load->model('Kelurahan');
         $ex = new Ses_pemetaan();
@@ -61,7 +95,7 @@ class DashboardController extends CI_Controller
 
         foreach ($getKelurahan as $kelurahan) {
             $data = $this->Pkh->byKelurahan($kelurahan['kelurahan'])->result_array();
-            array_push($kel, $ex->hitung($data));
+            array_push($kel, $ex->hitung($data, $konstanta));
         }
 
         return $kel;

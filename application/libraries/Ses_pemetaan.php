@@ -3,14 +3,14 @@
 class Ses_pemetaan
 {
 
-    public function hitung($data)
+    public function hitung($data, $kons)
     {
 
         $Fb     = 0;
         $Yb     = 0;
         $res    = [];
         $totalData = count($data);
-        $a      = 0.1;
+        $a      = $kons;
 
         foreach ($data as $k => $v) {
             $periode = $this->ConvertPeriode($v['tahun'] . '-' . $v['bulan']);
